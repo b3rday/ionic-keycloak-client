@@ -1,0 +1,21 @@
+<ion-view title="Edit/create">
+<ion-content class="has-header">        
+<form id="TaskForm" name="TaskForm" class="form-horizontal" role="form">
+    <div class="list">
+    
+
+        <label for="name" class="item item-input item-stacked-label">
+        <span class="input-label">Name</span>
+            <input id="name" name="name" type="text" class="form-control" ng-model="task.name" placeholder="Enter the Task Name"></input>
+        </label>
+
+
+    </div>
+    <div class="button-bar">
+       <button id="saveTask" name="saveTask" class="button button-positive" ng-click="save()">Save</button>
+       <button id="cancel" name="cancel" class="button button-assertive" ng-click="cancel()">Cancel</button>
+    </div>
+    </div>
+</form>
+</ion-content>
+</ion-view>
