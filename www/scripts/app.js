@@ -8,7 +8,7 @@ app.factory('Auth', function () {
     return auth;
   });
 
-app.run(function($ionicPlatform) {
+app.run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
 	  
 	  var pushConfig = {
@@ -35,7 +35,7 @@ app.run(function($ionicPlatform) {
     var keycloak = new Keycloak();  
     
     keycloak.init({ onLoad: 'login-required' }).success(function(){
-    	window.localStorage.setItem("token",keycloak.token);
+    	$rootScope.token = keycloak.token;
     	
     	
     	pushConfig.alias = keycloak.idToken.preferred_username;

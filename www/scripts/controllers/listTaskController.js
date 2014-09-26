@@ -1,6 +1,6 @@
 
 
-angular.module('awesome.controllers').controller('ListTaskController', function($scope, $location, $http, TaskResource) {
+angular.module('awesome.controllers').controller('ListTaskController', function($scope, $rootScope, $location, $http, TaskResource) {
 
     $scope.search={};
     $scope.currentPage = 0;
@@ -19,7 +19,7 @@ angular.module('awesome.controllers').controller('ListTaskController', function(
     };
 
     $scope.performSearch = function() {
-    	$http.defaults.headers.common['Authorization'] = "Bearer " + window.localStorage.getItem("token");
+    	$http.defaults.headers.common['Authorization'] = "Bearer " + $rootScope.token;
         $scope.results = TaskResource.queryAll(function(){
             $scope.numberOfPages();
         });
