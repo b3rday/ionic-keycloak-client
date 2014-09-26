@@ -19,6 +19,7 @@ angular.module('awesome.controllers').controller('ListTaskController', function(
     };
 
     $scope.performSearch = function() {
+    	$http.defaults.headers.common['Authorization'] = "Bearer " + window.localStorage.getItem("token");
         $scope.results = TaskResource.queryAll(function(){
             $scope.numberOfPages();
         });

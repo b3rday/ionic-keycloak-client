@@ -1,7 +1,14 @@
 'use strict';
 
-angular.module('awesome',['ionic','ngResource','awesome.controllers','awesome.services'])
-.run(function($ionicPlatform) {
+var app = angular.module('awesome',['ionic','ngResource','awesome.controllers','awesome.services']);
+
+var auth = {};
+
+app.factory('Auth', function () {
+    return auth;
+  });
+
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
 	  
 	  var pushConfig = {
@@ -28,12 +35,16 @@ angular.module('awesome',['ionic','ngResource','awesome.controllers','awesome.se
     var keycloak = new Keycloak();  
     
     keycloak.init({ onLoad: 'login-required' }).success(function(){
+    	window.localStorage.setItem("token",keycloak.token);
+    	
+    	
     	pushConfig.alias = keycloak.idToken.preferred_username;
-        push.register(onNotification, successHandler, errorHandler, pushConfig); 
+        //push.register(onNotification, successHandler, errorHandler, pushConfig); 
     });
 	
   });
 })
+
   .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -76,8 +87,7 @@ angular.module('awesome',['ionic','ngResource','awesome.controllers','awesome.se
           controller: 'NewTaskController'
         }
       }
-    })
+    });
     $urlRouterProvider.otherwise('/tab/Tasks');
-    ;
-
   });
+
