@@ -17,7 +17,12 @@ app.run(function($ionicPlatform, $rootScope) {
 			      senderID: "313664704978",
 			      variantID: "39d64fb1-6c82-4638-9d02-3fbbbad5ba28",
 			      variantSecret: "d2e4e60a-e3d9-4db7-acee-0d18abc953a4"
-			   }
+			   },
+			   ios: {
+				      
+				      variantID: "19bb97ce-992f-4893-98c2-14b0525f3d05",
+				      variantSecret: "4625b06f-091f-4eec-9a85-1ac9e4569642"
+				  }
 			};
 
     function onNotification(event) {
@@ -39,7 +44,7 @@ app.run(function($ionicPlatform, $rootScope) {
     	
     	
     	pushConfig.alias = keycloak.idToken.preferred_username;
-        //push.register(onNotification, successHandler, errorHandler, pushConfig); 
+        push.register(onNotification, successHandler, errorHandler, pushConfig); 
     });
 	
   });
